@@ -170,7 +170,7 @@ $(document).ready(function(){
 				if('localStorage' in window){
 					item = localStorage.getItem('bgColor');
 					// Отправляем новое значение ключа
-					console.log('Color thme - '+localStorage.getItem('bgColor'));
+					console.log('Color theme - '+localStorage.getItem('bgColor'));
 					// Станция по умолчанию(усли юзер зашел первый раз == ноль)
 					if(item == null){
 						item = "dark";
