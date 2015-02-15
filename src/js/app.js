@@ -68,7 +68,9 @@ $(document).ready(function(){
 			$('#drop_down_streams>ol li').removeClass('orangeBG');
 			$('#drop_down_streams>ol li[number="'+numerStation+'"]').addClass('orangeBG');
 			// Позиция для кнопок следующая/предыдущая композиция
-			next_prev_Position = numerStation;		
+			next_prev_Position = numerStation;
+			// Текст прелоада
+			preloadAlert();		
 		}
 
 		//Реализация кнопок  следующая/предыдущая композиция
@@ -106,7 +108,9 @@ $(document).ready(function(){
 					//Учитываем будто кнопка плей была нажата(дабы не нарушать заданные нами прежде условия)
 					flag = false;
 				}
-			}			
+			}
+			// Текст прелоада
+			preloadAlert();			
 		}
 
 
@@ -304,6 +308,18 @@ $(document).ready(function(){
 		});
 		// Дефолтная установка станции
 		audioBegining(defStation);
+
+		// Прелоад и сообщение
+		function preloadAlert(){
+			// Запоминаем название станции
+			var firstItem = stantion[next_prev_Position].name;
+			// Заглушка названия, во время загрузки потока
+			$('#NameStation').html('Loading...');
+			// Показываем название станции, после окончания загруки
+			audio.addEventListener("canplaythrough", function () { 
+				$('#NameStation').html(firstItem);
+			}, false);
+		} preloadAlert();
 	};
 	setupPlayer();
 
