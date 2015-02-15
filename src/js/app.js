@@ -5,17 +5,17 @@ $(document).ready(function(){
 	'use strict';
 	function setupPlayer(){
 		// Обьявляем все необходимые переменные
-        var trackName,
-            stationPoster,
-            flag = true,
+        var flag = true,
             // Уровень звука
             volumeMusic = 1,
             // Станция по умолчанию
             defStation = 2,
+            // Для звука
             volumePercent,
             volumeSave,
             // Для локального хранилища
             LCSTRG,
+            // Переключение станций
             next_prev_Position,
             // Обьявляем переменную присваемваем ей массив с радиостанциями 
             stantion = [{
@@ -247,10 +247,8 @@ $(document).ready(function(){
 			if($(event.target).attr('data-role') == "theme-switcher"){
 				if($(event.target).attr('themes') == 'dark'){
 					bgcolor('light')
-					console.log("dark");
 				} else if($(event.target).attr('themes') == 'light'){
 					bgcolor('dark')
-					console.log("light");
 				}
 			}
 
@@ -259,11 +257,9 @@ $(document).ready(function(){
 				if($("#btn_streams_list").attr("on") == "false"){
 					$('#drop_down_streams').animate({'height':'220px'},500);
 					$("#btn_streams_list").attr("on", "true")
-					console.log("Open streams list");
 				} else{					
 					$('#drop_down_streams').animate({'height':'0'},500);
 					$("#btn_streams_list").attr("on", "false")
-					console.log("Close streams list");
 				}
 			}
 
