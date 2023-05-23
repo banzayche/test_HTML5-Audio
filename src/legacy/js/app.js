@@ -316,7 +316,8 @@ $(document).ready(function(){
 			// Заглушка названия, во время загрузки потока
 			$('#NameStation').html('Loading...');
 			// Показываем название станции, после окончания загруки
-			audio.addEventListener("canplaythrough", function () { 
+			audio.addEventListener("canplaythrough", function (e) {
+				console.log(e)
 				$('#NameStation').html(firstItem);
 			}, false);
 		} preloadAlert();
