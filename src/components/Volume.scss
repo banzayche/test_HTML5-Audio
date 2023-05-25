@@ -1,0 +1,31 @@
+@import "../variables.css";
+
+.VolumeBar{
+  &[type="range"] {
+    display: inline-block;
+    -webkit-appearance: none;
+    background-color: var(--dark-mode-text);
+    height: 5px;
+    border-radius: 5px;
+    outline: 0;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background-color: var(--controls);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1px solid white;
+      cursor: pointer;
+      transition: .3s ease-in-out;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid var(--controls);
+      }
+      &:active {
+        transform: scale(1.2);
+      }
+    }
+  }
+}

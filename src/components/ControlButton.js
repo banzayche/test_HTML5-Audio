@@ -10,7 +10,7 @@ export const controlTypes = {
   volumeOn: 'volumeOn',
   volumeOff: 'volumeOff'
 };
-const ControlButton = (props) => <button {...props} className={classNames(`ControlButton ${props.controlType}`, props.className)}></button>;
+const ControlButton = ({controlType, className,...props}) => <button {...props} className={classNames(`ControlButton ${controlType}`, className)}></button>;
 
 ControlButton.propTypes = {
   controlType: PropTypes.oneOf(Object.keys(controlTypes).map(key => controlTypes[key])).isRequired,

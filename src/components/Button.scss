@@ -1,0 +1,23 @@
+@import "../variables.css";
+@import "../mixins";
+
+.Button {
+  @include transition;
+  color: var(--controls);
+  border: 1px solid var(--controls);
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  padding: 0 15px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+
+  &:active {
+   transform: scale(.9,.9);
+  }
+
+  &.Button-link {
+    border: none;
+  }
+}

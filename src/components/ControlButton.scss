@@ -1,10 +1,13 @@
+@import "../variables.css";
+@import "../mixins";
+
 @mixin play-pause-buttons {
+  @include transition;
   width: 50px;
   height: 50px;
-  border:1px solid #F97534;
+  border:1px solid var(--controls);
   border-radius:0;
   background-repeat: no-repeat;
-  transition:all .5s;
 
   background-size: 100% 100%;
 
@@ -12,21 +15,21 @@
 }
 
 @mixin prev-next {
+  @include transition;
   height: 25px;
   width:25px;
   background-size:100% 100%;
   cursor: pointer;
-  transition:all .3s;
   border: none;
 }
 
 @mixin volume {
+  @include transition;
   height: 25px;
   width: 25px;
   cursor: pointer;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  transition:all .5s;
   border: none;
 }
 
@@ -42,7 +45,6 @@
 
     &:hover {
       border-radius:50%;
-
     }
   }
 

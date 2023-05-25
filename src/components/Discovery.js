@@ -1,5 +1,6 @@
 import Button from "./Button";
 import ControlButton, { controlTypes } from "./ControlButton";
+import VolumeBar from "./Volume";
 
 const Discovery = () => {
   return (
@@ -22,30 +23,34 @@ const Discovery = () => {
         <Button className="Discovery-custom-button">I do nothing</Button>
       </p>
 
-      <h2>Control Buttons</h2>
+      <h2>Controls</h2>
       <p>
         Play button:
-        <ControlButton className="Discovery-custom-button" title='Play' controlType={controlTypes.play}></ControlButton>
+        <ControlButton title='Play' controlType={controlTypes.play}></ControlButton>
       </p>
       <p>
         Pause button:
-        <ControlButton className="Discovery-custom-button" title='Pause' controlType={controlTypes.pause}></ControlButton>
+        <ControlButton title='Pause' controlType={controlTypes.pause}></ControlButton>
       </p>
       <p>
         Next button:
-        <ControlButton className="Discovery-custom-button" title='Next' controlType={controlTypes.next}></ControlButton>
+        <ControlButton title='Next' controlType={controlTypes.next}></ControlButton>
       </p>
       <p>
         Previous button:
-        <ControlButton className="Discovery-custom-button" title='Previous' controlType={controlTypes.prev}></ControlButton>
+        <ControlButton title='Previous' controlType={controlTypes.prev}></ControlButton>
       </p>
       <p>
         Volume-on button:
-        <ControlButton className="Discovery-custom-button" title='Volume' controlType={controlTypes.volumeOn}></ControlButton>
+        <ControlButton title='Volume' controlType={controlTypes.volumeOn}></ControlButton>
       </p>
       <p>
         Volume-off button:
-        <ControlButton className="Discovery-custom-button" title='Volume' controlType={controlTypes.volumeOff}></ControlButton>
+        <ControlButton title='Volume' controlType={controlTypes.volumeOff}></ControlButton>
+      </p>
+      <p>
+        Volume:
+        <VolumeBar volumeValue={30}></VolumeBar>
       </p>
     </div>
   );
