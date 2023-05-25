@@ -4,4 +4,6 @@
     --ligh-mode-bg: rgba(192,192,192,.8);
     --light-mode-text: rgb(0, 0, 0);
     --controls: #F97534;
+
+    --transition: all .5s;
 }

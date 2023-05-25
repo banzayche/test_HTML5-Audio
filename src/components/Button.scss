@@ -1,8 +1,6 @@
 @import "../variables.css";
-@import "../mixins";
 
 .Button {
-  @include transition;
   color: var(--controls);
   border: 1px solid var(--controls);
   background-color: transparent;
@@ -12,6 +10,7 @@
   padding: 0 15px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  transition: var(--transition);
 
   &:active {
    transform: scale(.9,.9);

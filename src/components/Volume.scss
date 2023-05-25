@@ -17,7 +17,7 @@
       border-radius: 50%;
       border: 1px solid white;
       cursor: pointer;
-      transition: .3s ease-in-out;
+      transition: var(--transition);
 
       &:hover {
         background-color: white;
