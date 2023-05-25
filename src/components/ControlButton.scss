@@ -1,0 +1,74 @@
+@mixin play-pause-buttons {
+  width: 50px;
+  height: 50px;
+  border:1px solid #F97534;
+  border-radius:0;
+  background-repeat: no-repeat;
+  transition:all .5s;
+
+  background-size: 100% 100%;
+
+  cursor:pointer;
+}
+
+@mixin prev-next {
+  height: 25px;
+  width:25px;
+  background-size:100% 100%;
+  cursor: pointer;
+  transition:all .3s;
+  border: none;
+}
+
+@mixin volume {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition:all .5s;
+  border: none;
+}
+
+.ControlButton {
+  background-color: transparent;
+  &:active {
+    transform: scale(.9,.9);
+  }
+
+  &.play{
+    @include play-pause-buttons;
+    background-image: url('../legacy/img/play.png');
+
+    &:hover {
+      border-radius:50%;
+
+    }
+  }
+
+
+  &.pause{
+    @include play-pause-buttons;
+    background-image: url("../legacy/img/pause.png");
+    border-radius:50%;
+  }
+
+
+  &.next{
+    @include prev-next;
+    background-image: url("../legacy/img/next.png");
+  }
+  &.prev{
+    @include prev-next;
+    background-image: url("../legacy/img/prev.png");
+  }
+
+  &.volumeOn{
+    @include volume;
+    background-image: url('../legacy/img/volume_b.png');
+  }
+  &.volumeOff{
+    @include volume;
+    background-image: url('../legacy/img/volume_bn.png');
+  }
+}
