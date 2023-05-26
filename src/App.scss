@@ -1,4 +1,8 @@
-@import 'variables';
+@import './mixins';
+@import "./reset.css";
+
 .App {
+  height: 100%;
   border: 1px solid var(--controls);
+  @include theme-change-styles;
 }

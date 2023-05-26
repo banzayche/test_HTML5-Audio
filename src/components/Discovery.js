@@ -1,14 +1,29 @@
 import Button from "./Button";
 import ControlButton, { controlTypes } from "./ControlButton";
 import VolumeBar from "./Volume";
+import { useContext } from "react";
+import ThemeContext, { colorThemeSchema } from "../contexts/ThemeContext";
+import './Discovery.scss';
+import Toggle from "./Toggle";
+import classNames from "classnames";
+import PropTypes from "prop-types";
 
-const Discovery = () => {
+const Discovery = ({className}) => {
+  const {theme, updateTheme} = useContext(ThemeContext);
+
+  const onThemeChange = () => updateTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark);
+
   return (
-    <div className="Discovery">
-      <h2>Logo</h2>
-      <div style={{background: '#f6f6f6', display: 'inline-block'}}>
-        ...
-      </div>
+    <div className={classNames('Discovery', className)}>
+      <label className="toggle">
+        <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={onThemeChange} />
+        <span className="toggle-label">Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>
+      </label>
+
+
+      <h2>Active color theme</h2>
+      <p><strong><i>{theme}</i></strong></p>
+
 
       <h2>Buttons</h2>
       <p>
@@ -55,5 +70,9 @@ const Discovery = () => {
     </div>
   );
 }
+
+Discovery.propTypes = {
+  className: PropTypes.string
+};
 
 export default Discovery;

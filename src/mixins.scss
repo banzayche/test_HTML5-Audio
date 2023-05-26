@@ -1,0 +1,14 @@
+@mixin theme-change-styles {
+  transition-property: background-color, color;
+  transition-timing-function: linear;
+  transition-duration: .5s;
+
+  &.dark {
+    background-color: var(--dark-mode-bg);
+    color: var(--dark-mode-text);
+  }
+  &.light {
+    background-color: var(--ligh-mode-bg);
+    color: var(--light-mode-text);
+  }
+}

@@ -1,0 +1,8 @@
+@import '../mixins';
+
+.Discovery {
+  height: 100%;
+  padding: 50px 40px;
+
+  @include theme-change-styles;
+}
