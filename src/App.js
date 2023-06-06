@@ -4,6 +4,7 @@ import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 import Toggle from "./components/Toggle";
+import PlayerContainer from "./components/PlayerContainer";
 
 const isDiscovery = window.location.pathname.replace(/\//g, '') === 'discovery';
 const App = () => {
@@ -23,11 +24,12 @@ const App = () => {
   return (
     <ThemeContext.Provider value={{theme, updateTheme}}>
       <div className={classNames('App', {dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})}>
-        <label className="toggle">
+        <label className="theme-toggle">
           <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={() => setTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark)} />
           <span className="toggle-label">Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>
         </label>
-        My App TEST
+
+        <PlayerContainer />
       </div>
     </ThemeContext.Provider>
   );

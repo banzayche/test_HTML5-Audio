@@ -5,15 +5,16 @@
     display: inline-block;
     -webkit-appearance: none;
     background-color: var(--dark-mode-text);
-    height: 5px;
+    height: 1px;
     border-radius: 5px;
     outline: 0;
+    width: 70px;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       background-color: var(--controls);
-      width: 15px;
-      height: 15px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       border: 1px solid white;
       cursor: pointer;

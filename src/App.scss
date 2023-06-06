@@ -3,6 +3,9 @@
 
 .App {
   height: 100%;
-  border: 1px solid var(--controls);
   @include theme-change-styles;
+
+  .theme-toggle {
+    padding: 20px 40px;
+  }
 }
