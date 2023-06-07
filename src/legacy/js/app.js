@@ -22,35 +22,14 @@ $(document).ready(function(){
                 name: "Buffalo",
                 src: "http://stream-uk1.radioparadise.com/mp3-192"
             }, {
-                name: "Radio Rocks",
-                src: "http://online-radioroks2.tavrmedia.ua/RadioROKS"
-            }, {
                 name: "Radio z Kryjivky",
                 src: "http://stream.mjoy.ua:8000/radio-z-kryjivky"
-            }, {
-                name: "KissFM_deep",
-                src: "http://online-kissfm.tavrmedia.ua/KissFM_deep"
-            }, {
-                name: "KissFM_digital",
-                src: "http://online-kissfm.tavrmedia.ua/KissFM_digital"
-            }, {
-                name: "KissFM_trance",
-                src: "http://online-kissfm.tavrmedia.ua/KissFM_trance"
             }, {
                 name: "Amsterdam Trance",
                 src: "http://sc-atr.1.fm:7700/;stream.nsv"
             }, {
                 name: "MFM Station",
                 src: "http://radio.mfm.ua:8080/online128"
-            }, {
-                name: "LoungeFM",
-                src: "http://cast.loungefm.com.ua/loungefm"
-            }, {
-                name: "Metal Voice",
-                src: "http://www.metalvoice.net:8000/listen"
-            }, {
-                name: "12 Panks",
-                src: "http://12punks-high.rautemusik.fm/;stream.nsv"
             }],
 			// Обьявляем переменную которой присваивам элемент аудио
 			audio = new Audio();
