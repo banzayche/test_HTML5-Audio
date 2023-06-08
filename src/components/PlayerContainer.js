@@ -40,8 +40,16 @@ const PlayerContainer = () => {
   useEffect(() => {
     setStations(mockedStreams);
     const listener = () => setIsPlay(true);
+    const pauseListener = () => setIsPlay(false);
     audio.current.addEventListener('canplay', listener);
-    return () => audio.current.removeEventListener('canplay', listener);
+    audio.current.addEventListener("pause", pauseListener);
+    audio.current.addEventListener("play", listener);
+
+    return () => {
+      audio.current.removeEventListener('canplay', listener);
+      audio.current.removeEventListener('pause', pauseListener);
+      audio.current.removeEventListener('play', listener);
+    }
   }, []);
 
   useEffect(() => {
@@ -104,17 +112,17 @@ const PlayerContainer = () => {
   return (
     <div className="Player">
       <div className='Player__controlsContainerMain'>
-        <ControlButton onClick={playPause} title={isPlay ? 'Play' : 'Pause'} controlType={isPlay ? controlTypes.pause : controlTypes.play} />
+        <ControlButton disabled={!activeStation.src} onClick={playPause} title={isPlay ? 'Play' : 'Pause'} controlType={isPlay ? controlTypes.pause : controlTypes.play} />
 
         <div className='controlsContainerMain__controlsContainerInner'>
-          <div>{activeStation.name || 'Loading...'}</div>
+          <div>{activeStation.name || 'Chose radio station...'}</div>
           <div className='controlsContainerInner__nextPrevVolumeControlsContainer'>
             <div className='nextPrevVolumeControlsContainer__prevNextContainer'>
-              <ControlButton onClick={setPrevStation} title='Previous' controlType={controlTypes.prev} />
-              <ControlButton onClick={setNextStation} title='Next' controlType={controlTypes.next} />
+              <ControlButton disabled={!activeStation.src} onClick={setPrevStation} title='Previous' controlType={controlTypes.prev} />
+              <ControlButton disabled={!activeStation.src} onClick={setNextStation} title='Next' controlType={controlTypes.next} />
             </div>
             <div className='nextPrevVolumeControlsContainer__volumeContainer'>
-              <ControlButton onClick={onMute} title='Volume' controlType={isMuted ? controlTypes.volumeOff : controlTypes.volumeOn} />
+              <ControlButton  onClick={onMute} title='Volume' controlType={isMuted ? controlTypes.volumeOff : controlTypes.volumeOn} />
               <VolumeBar onVolumeChange={onVolumeChange} volumeValue={volume}></VolumeBar>
             </div>
           </div>

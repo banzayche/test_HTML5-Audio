@@ -11,12 +11,13 @@ export const controlTypes = {
   volumeOn: 'volumeOn',
   volumeOff: 'volumeOff'
 };
-const ControlButton = memo(({controlType, className,...props}) => <button {...props} className={classNames(`ControlButton ${controlType}`, className)}></button>);
+const ControlButton = memo(({controlType, className, disabled, ...props}) => <button {...props} disabled={disabled} className={classNames(`ControlButton ${controlType}`, className)}></button>);
 
 ControlButton.propTypes = {
   controlType: PropTypes.oneOf(Object.keys(controlTypes).map(key => controlTypes[key])).isRequired,
   className: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default ControlButton;

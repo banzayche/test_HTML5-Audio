@@ -34,6 +34,11 @@
 
 .ControlButton {
   background-color: transparent;
+
+  &[disabled] {
+    cursor: not-allowed !important;
+  }
+
   &:active {
     transform: scale(.9,.9);
   }
@@ -42,7 +47,7 @@
     @include play-pause-buttons;
     background-image: url('../legacy/img/play.png');
 
-    &:hover {
+    &:hover:not([disabled]) {
       border-radius:50%;
     }
   }
