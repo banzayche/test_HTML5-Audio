@@ -39,13 +39,15 @@ const PlayerContainer = () => {
 
   useEffect(() => {
     setStations(mockedStreams);
+    const listener = () => setIsPlay(true);
+    audio.current.addEventListener('canplay', listener);
+    return () => audio.current.removeEventListener('canplay', listener);
   }, []);
 
   useEffect(() => {
     if (activeStation.src) {
+      setIsPlay(false);
       audio.current.src = activeStation.src;
-      audio.current.play();
-      setIsPlay(!isPlay);
     }
   }, [activeStation]);
 
@@ -55,7 +57,6 @@ const PlayerContainer = () => {
     } else {
       audio.current.volume = volume;
     }
-    console.log('volume - ', audio.current.volume);
   }, [volume, isMuted]);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ const PlayerContainer = () => {
     setStreamsListCollapsed(!streamsListCollapsed);
   }
 
-  const setStation = function (station, e) {
+  const onStationSelect = function (station, e) {
     e.preventDefault();
     setActiveStation(station);
   }
@@ -86,6 +87,20 @@ const PlayerContainer = () => {
     setIsMuted(!isMuted);
   }
 
+  const setPrevStation = () => {
+    let index = stationsList.findIndex(station => station.id === activeStation.id) - 1;
+    if (index === -2) return;
+    if (index === -1) index = stationsList.length - 1;
+    setActiveStation(stationsList[index]);
+  }
+
+  const setNextStation = () => {
+    let index = stationsList.findIndex(station => station.id === activeStation.id) + 1;
+    if (index === 0) return;
+    if (index === stationsList.length) index = 0;
+    setActiveStation(stationsList[index]);
+  }
+
   return (
     <div className="Player">
       <div className='Player__controlsContainerMain'>
@@ -95,8 +110,8 @@ const PlayerContainer = () => {
           <div>{activeStation.name || 'Loading...'}</div>
           <div className='controlsContainerInner__nextPrevVolumeControlsContainer'>
             <div className='nextPrevVolumeControlsContainer__prevNextContainer'>
-              <ControlButton title='Previous' controlType={controlTypes.prev} />
-              <ControlButton title='Next' controlType={controlTypes.next} />
+              <ControlButton onClick={setPrevStation} title='Previous' controlType={controlTypes.prev} />
+              <ControlButton onClick={setNextStation} title='Next' controlType={controlTypes.next} />
             </div>
             <div className='nextPrevVolumeControlsContainer__volumeContainer'>
               <ControlButton onClick={onMute} title='Volume' controlType={isMuted ? controlTypes.volumeOff : controlTypes.volumeOn} />
@@ -108,7 +123,7 @@ const PlayerContainer = () => {
       </div>
       <Button onClick={toggleStreamsList} className='Player__showStreamsLink' href='' >{streamsListCollapsed ? 'Hide available streams <-' : 'Show available streams ->' }</Button>
 
-      <StreamsList activeStation={activeStation} selectStream={setStation} streams={stationsList} collapsed={streamsListCollapsed} className='Player_streamList' />
+      <StreamsList activeStation={activeStation} selectStream={onStationSelect} streams={stationsList} collapsed={streamsListCollapsed} className='Player_streamList' />
     </div>
   );
 };
