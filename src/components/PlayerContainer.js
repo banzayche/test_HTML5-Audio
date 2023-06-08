@@ -28,6 +28,9 @@ const mockedStreams = [{
 
 const PlayerContainer = () => {
   const [streamsListCollapsed, setStreamsListCollapsed] = useState(false);
+  const [volume, setVolume] = useState(0.3);
+  const [isMuted, setIsMuted] =useState(false);
+  const [isPlay, setIsPlay] = useState(false);
   const [activeStation, setActiveStation, setStations, stationsList] = useStore(
     (state) => [state.activeStation, state.setActiveStation, state.setStations, state.stationsList],
     shallow
@@ -42,8 +45,25 @@ const PlayerContainer = () => {
     if (activeStation.src) {
       audio.current.src = activeStation.src;
       audio.current.play();
+      setIsPlay(!isPlay);
     }
-  }, [activeStation])
+  }, [activeStation]);
+
+  useEffect(() => {
+    if (isMuted) {
+      audio.current.volume = 0;
+    } else {
+      audio.current.volume = volume;
+    }
+    console.log('volume - ', audio.current.volume);
+  }, [volume, isMuted]);
+
+  useEffect(() => {
+    if (audio.current.src) {
+      if (isPlay) audio.current.play();
+      else audio.current.pause();
+    }
+  }, [isPlay]);
 
   const toggleStreamsList = (e) => {
     e.preventDefault();
@@ -55,11 +75,21 @@ const PlayerContainer = () => {
     setActiveStation(station);
   }
 
+  const onVolumeChange = (event) => {
+    const newVolume = Number(event.target.value);
+    setVolume(newVolume);
+  };
+
+  const playPause = () => setIsPlay(!isPlay)
+
+  const onMute = () => {
+    setIsMuted(!isMuted);
+  }
 
   return (
     <div className="Player">
       <div className='Player__controlsContainerMain'>
-        <ControlButton title='Play' controlType={controlTypes.play} />
+        <ControlButton onClick={playPause} title={isPlay ? 'Play' : 'Pause'} controlType={isPlay ? controlTypes.pause : controlTypes.play} />
 
         <div className='controlsContainerMain__controlsContainerInner'>
           <div>{activeStation.name || 'Loading...'}</div>
@@ -69,8 +99,8 @@ const PlayerContainer = () => {
               <ControlButton title='Next' controlType={controlTypes.next} />
             </div>
             <div className='nextPrevVolumeControlsContainer__volumeContainer'>
-              <ControlButton title='Volume' controlType={controlTypes.volumeOn} />
-              <VolumeBar volumeValue={30}></VolumeBar>
+              <ControlButton onClick={onMute} title='Volume' controlType={isMuted ? controlTypes.volumeOff : controlTypes.volumeOn} />
+              <VolumeBar onVolumeChange={onVolumeChange} volumeValue={volume}></VolumeBar>
             </div>
           </div>
         </div>

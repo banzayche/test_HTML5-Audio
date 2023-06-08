@@ -2,11 +2,11 @@ import Button from "./Button";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import './StreamsList.scss';
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 
 
 
-const StreamsList = ({ className, collapsed, streams, selectStream, activeStation }) => {
+const StreamsList = memo(({ className, collapsed, streams, selectStream, activeStation }) => {
 
   const onStreamClick = useCallback(selectStream, [selectStream]);
 
@@ -21,7 +21,7 @@ const StreamsList = ({ className, collapsed, streams, selectStream, activeStatio
       </ul>
     </div>
   );
-};
+});
 
 StreamsList.propTypes = {
   className: PropTypes.string,

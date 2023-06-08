@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import './ControlButton.scss';
+import { memo } from "react";
 
 export const controlTypes = {
   play: 'play',
@@ -10,7 +11,7 @@ export const controlTypes = {
   volumeOn: 'volumeOn',
   volumeOff: 'volumeOff'
 };
-const ControlButton = ({controlType, className,...props}) => <button {...props} className={classNames(`ControlButton ${controlType}`, className)}></button>;
+const ControlButton = memo(({controlType, className,...props}) => <button {...props} className={classNames(`ControlButton ${controlType}`, className)}></button>);
 
 ControlButton.propTypes = {
   controlType: PropTypes.oneOf(Object.keys(controlTypes).map(key => controlTypes[key])).isRequired,
