@@ -29,7 +29,7 @@ const mockedStreams = [{
 const PlayerContainer = () => {
   const [streamsListCollapsed, setStreamsListCollapsed] = useState(false);
   const [volume, setVolume] = useState(0.3);
-  const [isMuted, setIsMuted] =useState(false);
+  const [volumeSnapshot, setVolumeSnapshot] = useState(0.05);
   const [isPlay, setIsPlay] = useState(false);
   const [activeStation, setActiveStation, setStations, stationsList] = useStore(
     (state) => [state.activeStation, state.setActiveStation, state.setStations, state.stationsList],
@@ -60,12 +60,13 @@ const PlayerContainer = () => {
   }, [activeStation]);
 
   useEffect(() => {
-    if (isMuted) {
-      audio.current.volume = 0;
+    if (volume > 0.05) {
+      setVolumeSnapshot(0);
+      audio.current.volume = volume;
     } else {
       audio.current.volume = volume;
     }
-  }, [volume, isMuted]);
+  }, [volume]);
 
   useEffect(() => {
     if (audio.current.src) {
@@ -92,7 +93,13 @@ const PlayerContainer = () => {
   const playPause = () => setIsPlay(!isPlay)
 
   const onMute = () => {
-    setIsMuted(!isMuted);
+    if (volumeSnapshot <= 0.05) {
+      setVolumeSnapshot(volume);
+      setVolume(0.05)
+    } else {
+      setVolume(volumeSnapshot);
+      setVolumeSnapshot(0.05);
+    }
   }
 
   const setPrevStation = () => {
@@ -122,7 +129,7 @@ const PlayerContainer = () => {
               <ControlButton disabled={!activeStation.src} onClick={setNextStation} title='Next' controlType={controlTypes.next} />
             </div>
             <div className='nextPrevVolumeControlsContainer__volumeContainer'>
-              <ControlButton  onClick={onMute} title='Volume' controlType={isMuted ? controlTypes.volumeOff : controlTypes.volumeOn} />
+              <ControlButton  onClick={onMute} title='Volume' controlType={volume <= 0.05 ? controlTypes.volumeOff : controlTypes.volumeOn} />
               <VolumeBar onVolumeChange={onVolumeChange} volumeValue={volume}></VolumeBar>
             </div>
           </div>
