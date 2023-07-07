@@ -1,78 +1,196 @@
 import Button from "./Button";
 import ControlButton, { controlTypes } from "./ControlButton";
 import VolumeBar from "./Volume";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ThemeContext, { colorThemeSchema } from "../contexts/ThemeContext";
-import './Discovery.scss';
+import "./Discovery.scss";
 import Toggle from "./Toggle";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import DiscoveryCard from "./DiscoveryCard";
 
-const Discovery = ({className}) => {
-  const {theme, updateTheme} = useContext(ThemeContext);
+const Discovery = ({ className }) => {
+  const { theme, updateTheme } = useContext(ThemeContext);
+  const [volume, setVolume] = useState(0.5);
 
-  const onThemeChange = () => updateTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark);
+  const onThemeChange = () =>
+    updateTheme(
+      theme === colorThemeSchema.dark
+        ? colorThemeSchema.light
+        : colorThemeSchema.dark
+    );
+
 
   return (
-    <div className={classNames('Discovery', className)}>
-      <label className="toggle">
-        <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={onThemeChange} />
-        <span className="toggle-label">Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>
-      </label>
+    <div className={classNames("Discovery", className)}>
+      <h2>Active color theme <small><i>_{theme}_</i></small></h2>
+
+      <DiscoveryCard
+        exampleUsageCode={`
+        <label className="toggle">
+          <Toggle
+            checked={theme === colorThemeSchema.dark}
+            value={theme}
+            onChange={onThemeChange}
+          />
+          <span className="toggle-label">
+            Switch to{" "}
+            {theme === colorThemeSchema.dark
+              ? colorThemeSchema.light
+              : colorThemeSchema.dark}{" "}
+            theme
+          </span>
+        </label>
+        `}
+        sectionName={'Toggle'}
+        exampleName={'Toggle component usage'}
+        description={'Toggle component is a user interface element that allows users to switch between two states or options. It is commonly used to represent an on/off switch or to control the visibility of content.\n' +
+                       '\n' +
+                       'A toggle component typically consists of a visual representation, such as a sliding button or a checkbox, and it maintains an internal state to track the current state of the toggle. When the user interacts with the toggle, it triggers an event or updates a value to reflect the new state.'}
+      >
+        <label className="toggle">
+          <Toggle
+            checked={theme === colorThemeSchema.dark}
+            value={theme}
+            onChange={onThemeChange}
+          />
+          <span className="toggle-label">
+            Switch to{" "}
+                    {theme === colorThemeSchema.dark
+                      ? colorThemeSchema.light
+                      : colorThemeSchema.dark}{" "}
+                    theme
+          </span>
+        </label>
+      </DiscoveryCard>
+
+      <DiscoveryCard
+        exampleUsageCode={`
+        <Button onClick={() => alert("I'm open for new roles.")}>
+          Click me
+        </Button>
+        `}
+        sectionName={'Buttons'}
+        description={'Button with onClick'}>
+        <Button onClick={() => alert("I'm open for new roles.")}>
+          Click me
+        </Button>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <Button href="https://github.com/banzayche" target="_blank">
+          Follow me
+        </Button>
+        `}
+        description={'Button as link'}>
+        <Button href="https://github.com/banzayche" target="_blank">
+          Follow me
+        </Button>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <Button className="Discovery-custom-button">Simple button</Button>
+        `}
+        description={'Button with custom className'}>
+        <Button className="Discovery-custom-button">Simple button</Button>
+      </DiscoveryCard>
 
 
-      <h2>Active color theme</h2>
-      <p><strong><i>{theme}</i></strong></p>
-
-
-      <h2>Buttons</h2>
-      <p>
-        Button with onClick:{' '}
-        <Button onClick={() => alert('ouch')}>Click me</Button>
-      </p>
-      <p>
-        A link: <Button href="https://reactjs.org/">Follow me</Button>
-      </p>
-      <p>
-        Custom class name:{' '}
-        <Button className="Discovery-custom-button">I do nothing</Button>
-      </p>
-
-      <h2>Controls</h2>
-      <p>
-        Play button:
-        <ControlButton title='Play' controlType={controlTypes.play}></ControlButton>
-      </p>
-      <p>
-        Pause button:
-        <ControlButton title='Pause' controlType={controlTypes.pause}></ControlButton>
-      </p>
-      <p>
-        Next button:
-        <ControlButton title='Next' controlType={controlTypes.next}></ControlButton>
-      </p>
-      <p>
-        Previous button:
-        <ControlButton title='Previous' controlType={controlTypes.prev}></ControlButton>
-      </p>
-      <p>
-        Volume-on button:
-        <ControlButton title='Volume' controlType={controlTypes.volumeOn}></ControlButton>
-      </p>
-      <p>
-        Volume-off button:
-        <ControlButton title='Volume' controlType={controlTypes.volumeOff}></ControlButton>
-      </p>
-      <p>
-        Volume:
-        <VolumeBar volumeValue={30}></VolumeBar>
-      </p>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <ControlButton
+          title="Play"
+          controlType={controlTypes.play}
+        ></ControlButton>
+        `}
+        sectionName={'Controls'}
+        description={'Play control'}>
+        <ControlButton
+          title="Play"
+          controlType={controlTypes.play}
+        ></ControlButton>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <ControlButton
+          title="Pause"
+          controlType={controlTypes.pause}
+        ></ControlButton>
+        `}
+        description={'Pause control'}>
+        <ControlButton
+          title="Pause"
+          controlType={controlTypes.pause}
+        ></ControlButton>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <ControlButton
+          title="Next"
+          controlType={controlTypes.next}
+        ></ControlButton>
+        `}
+        description={'Next control'}>
+        <ControlButton
+          title="Next"
+          controlType={controlTypes.next}
+        ></ControlButton>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <ControlButton
+          title="Previous"
+          controlType={controlTypes.prev}
+        ></ControlButton>
+        `}
+        description={'Previous control'}>
+        <ControlButton
+          title="Previous"
+          controlType={controlTypes.prev}
+        ></ControlButton>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <ControlButton
+          title="Volume"
+          controlType={controlTypes.volumeOn}
+        ></ControlButton>
+        `}
+        description={'Volume On control'}>
+        <ControlButton
+          title="Volume"
+          controlType={controlTypes.volumeOn}
+        ></ControlButton>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <ControlButton
+          title="Volume"
+          controlType={controlTypes.volumeOff}
+        ></ControlButton>
+        `}
+        description={'Volume Off control'}>
+        <ControlButton
+          title="Volume"
+          controlType={controlTypes.volumeOff}
+        ></ControlButton>
+      </DiscoveryCard>
+      <DiscoveryCard
+        exampleUsageCode={`
+        <VolumeBar 
+          volumeValue={volume} 
+          onVolumeChange={(e) => setVolume(e.target.value)}
+        ></VolumeBar>
+        `}
+        description={'Volume slider'}>
+        <VolumeBar volumeValue={volume} onVolumeChange={(e) => setVolume(Number(e.target.value))}></VolumeBar>
+      </DiscoveryCard>
     </div>
   );
-}
+};
 
 Discovery.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Discovery;

@@ -7,7 +7,8 @@
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --mode=development",
-    "prod": "webpack --mode=production"
+    "prod": "webpack --mode=production",
+    "deploy/pages": "gh-pages -d dist"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -16,10 +17,12 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-syntax-highlighter": "^15.5.0",
     "style-loader": "^3.3.3",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "@babel/core": "^7.21.8",
     "@babel/eslint-parser": "^7.21.8",
     "@babel/plugin-proposal-class-properties": "^7.18.6",

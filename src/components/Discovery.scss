@@ -1,8 +1,8 @@
 @import '../mixins';
 
 .Discovery {
+  @include theme-change-styles;
   height: 100%;
   padding: 50px 40px;
-
-  @include theme-change-styles;
+  overflow: auto;
 }
