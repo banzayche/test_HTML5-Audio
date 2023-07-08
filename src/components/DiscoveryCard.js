@@ -10,6 +10,7 @@ const DiscoveryCard = memo(({children, exampleUsageCode, code, exampleName, code
           <div className="DiscoveryCard__listContainer__children">{children}</div>
           {exampleUsageCode ? <CodeSection className={`DiscoveryCard__listContainer__codeExample DiscoveryCard__listContainer__codeExample--${theme}`} name={exampleName}>{exampleUsageCode}</CodeSection> : ''}
       </div>
+      {code ? <CodeSection name={codeName}>{code}</CodeSection> : ''}
     </div>
     );
 });
