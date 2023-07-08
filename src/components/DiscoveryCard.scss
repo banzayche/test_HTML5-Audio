@@ -16,6 +16,13 @@
 
     &__codeExample {
       width: 750px;
+
+      &--dark {
+        opacity: 1;
+      }
+      &--light {
+        opacity: .7;
+      }
     }
   }
 }

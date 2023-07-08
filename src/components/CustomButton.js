@@ -3,17 +3,16 @@ import PropTypes from "prop-types";
 import './Button.scss';
 import { memo } from "react";
 
-const CustomButton = memo(({href, className, children, isLink}) =>
-    typeof href === 'string' || isLink ?
-    <a className={classNames('Button', 'Button-link', className)}>{children}</a> :
-    <button className={classNames('Button', className)}>{children}</button>
+const CustomButton = memo((props) =>
+    typeof props.href === 'string' ?
+    <a  {...props} className={classNames('Button', 'Button-link', props.className)}>{props.children}</a> :
+    <button {...props} className={classNames('Button', props.className)}>{props.children}</button>
 );
 
 CustomButton.propTypes = {
   href: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.any,
-  isLink: PropTypes.bool
+  children: PropTypes.any
 };
 
 export default CustomButton;

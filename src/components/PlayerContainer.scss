@@ -1,9 +1,21 @@
 @import '../variables.css';
+.Player__container {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 555px;
+}
+
 .Player {
   width: 400px;
   border: 1px solid var(--controls);
-  margin: 200px auto;
   padding: 25px;
+  margin-top: -200px;
+
 
   display: flex;
   flex-direction: column;

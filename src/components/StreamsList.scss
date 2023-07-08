@@ -2,7 +2,7 @@
 
 .StreamsList {
   max-height: 400px;
-  overflow: hidden;
+  overflow: auto;
   transition: max-height 0.5s ease-in;
 
   &--collapsed{

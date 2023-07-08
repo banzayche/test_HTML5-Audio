@@ -28,6 +28,7 @@ const Discovery = ({ className }) => {
         'A toggle component typically consists of a visual representation, such as a sliding button or a checkbox, and it maintains an internal state to track the current state of the toggle. When the user interacts with the toggle, it triggers an event or updates a value to reflect the new state.'}
       >
         <DiscoveryCard
+          theme={theme}
           exampleUsageCode={`
         <label className="toggle">
           <Toggle
@@ -62,6 +63,7 @@ const Discovery = ({ className }) => {
         description={'Buttons section in our components library provides an examples of using Button component in designed way.'}
         sectionName="Buttons">
         <DiscoveryCard
+          theme={theme}
           exampleName="Button with action"
           exampleUsageCode={`
         <Button onClick={() => alert("I'm open for new roles.")}>
@@ -73,6 +75,7 @@ const Discovery = ({ className }) => {
           </CustomButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Link button"
           exampleUsageCode={`
         <Button href="https://github.com/banzayche" target="_blank">
@@ -84,6 +87,7 @@ const Discovery = ({ className }) => {
           </CustomButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Simple example of button"
           exampleUsageCode={`
         <Button className="Discovery-custom-button">Simple button</Button>
@@ -98,6 +102,7 @@ const Discovery = ({ className }) => {
         sectionName="Controls"
       >
         <DiscoveryCard
+          theme={theme}
           exampleName="Play button"
           exampleUsageCode={`
           <ControlButton
@@ -111,6 +116,7 @@ const Discovery = ({ className }) => {
           ></ControlButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Pause button"
           exampleUsageCode={`
           <ControlButton
@@ -124,6 +130,7 @@ const Discovery = ({ className }) => {
           ></ControlButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Next track button"
           exampleUsageCode={`
           <ControlButton
@@ -137,6 +144,7 @@ const Discovery = ({ className }) => {
           ></ControlButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Previous track button"
           exampleUsageCode={`
           <ControlButton
@@ -150,6 +158,7 @@ const Discovery = ({ className }) => {
           ></ControlButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Volume on button"
           exampleUsageCode={`
           <ControlButton
@@ -163,6 +172,7 @@ const Discovery = ({ className }) => {
           ></ControlButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Volume muted button"
           exampleUsageCode={`
           <ControlButton
@@ -176,6 +186,7 @@ const Discovery = ({ className }) => {
           ></ControlButton>
         </DiscoveryCard>
         <DiscoveryCard
+          theme={theme}
           exampleName="Volume bar"
           exampleUsageCode={`
         <VolumeBar 

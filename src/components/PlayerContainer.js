@@ -7,9 +7,105 @@ import { useEffect, useRef, useState } from "react";
 import useStore from "../store/PlayerStore";
 import { shallow } from "zustand/shallow";
 import { v4 as uuid } from "uuid";
+import { useLocation } from "react-router-dom";
 
 const mockedStreams = [
   {
+    name: "Buffalo",
+    src: "http://stream-uk1.radioparadise.com/mp3-192",
+    id: uuid(),
+  },
+  {
+    name: "Radio z Kryjivky",
+    src: "http://stream.mjoy.ua:8000/radio-z-kryjivky",
+    id: uuid(),
+  },
+  {
+    name: "Amsterdam Trance",
+    src: "http://sc-atr.1.fm:7700/;stream.nsv",
+    id: uuid(),
+  },
+  {
+    name: "MFM Station",
+    src: "http://radio.mfm.ua:8080/online128",
+    id: uuid(),
+  },{
+    name: "Buffalo",
+    src: "http://stream-uk1.radioparadise.com/mp3-192",
+    id: uuid(),
+  },
+  {
+    name: "Radio z Kryjivky",
+    src: "http://stream.mjoy.ua:8000/radio-z-kryjivky",
+    id: uuid(),
+  },
+  {
+    name: "Amsterdam Trance",
+    src: "http://sc-atr.1.fm:7700/;stream.nsv",
+    id: uuid(),
+  },
+  {
+    name: "MFM Station",
+    src: "http://radio.mfm.ua:8080/online128",
+    id: uuid(),
+  },{
+    name: "Buffalo",
+    src: "http://stream-uk1.radioparadise.com/mp3-192",
+    id: uuid(),
+  },
+  {
+    name: "Radio z Kryjivky",
+    src: "http://stream.mjoy.ua:8000/radio-z-kryjivky",
+    id: uuid(),
+  },
+  {
+    name: "Amsterdam Trance",
+    src: "http://sc-atr.1.fm:7700/;stream.nsv",
+    id: uuid(),
+  },
+  {
+    name: "MFM Station",
+    src: "http://radio.mfm.ua:8080/online128",
+    id: uuid(),
+  },{
+    name: "Buffalo",
+    src: "http://stream-uk1.radioparadise.com/mp3-192",
+    id: uuid(),
+  },
+  {
+    name: "Radio z Kryjivky",
+    src: "http://stream.mjoy.ua:8000/radio-z-kryjivky",
+    id: uuid(),
+  },
+  {
+    name: "Amsterdam Trance",
+    src: "http://sc-atr.1.fm:7700/;stream.nsv",
+    id: uuid(),
+  },
+  {
+    name: "MFM Station",
+    src: "http://radio.mfm.ua:8080/online128",
+    id: uuid(),
+  },{
+    name: "Buffalo",
+    src: "http://stream-uk1.radioparadise.com/mp3-192",
+    id: uuid(),
+  },
+  {
+    name: "Radio z Kryjivky",
+    src: "http://stream.mjoy.ua:8000/radio-z-kryjivky",
+    id: uuid(),
+  },
+  {
+    name: "Amsterdam Trance",
+    src: "http://sc-atr.1.fm:7700/;stream.nsv",
+    id: uuid(),
+  },
+  {
+    name: "MFM Station",
+    src: "http://radio.mfm.ua:8080/online128",
+    id: uuid(),
+  },{
     name: "Buffalo",
     src: "http://stream-uk1.radioparadise.com/mp3-192",
     id: uuid(),
@@ -35,7 +131,7 @@ const PlayerContainer = () => {
   const defaultVolume = 0.3;
   const volumeCoef = 0.01;
 
-  const [streamsListCollapsed, setStreamsListCollapsed] = useState(false);
+  const [streamsListOpened, setStreamsListOpened] = useState(true);
   const [volume, setVolume] = useState(defaultVolume);
   const [volumeSnapshot, setVolumeSnapshot] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -50,10 +146,12 @@ const PlayerContainer = () => {
     ],
     shallow
   );
-  const audio = useRef(new Audio());
+
+  const audio = useRef(null);
 
   useEffect(() => {
     setStations(mockedStreams);
+    audio.current = new Audio();
     const listener = () => {
       setIsLoading(false);
       setIsPlaying(true);
@@ -61,6 +159,9 @@ const PlayerContainer = () => {
     audio.current.addEventListener("canplay", listener);
 
     return () => {
+      audio.current.pause();
+      audio.current.src = '';
+      audio.current.load();
       audio.current.removeEventListener("canplay", listener);
     };
   }, []);
@@ -91,7 +192,7 @@ const PlayerContainer = () => {
 
   const toggleStreamsList = (e) => {
     e.preventDefault();
-    setStreamsListCollapsed(!streamsListCollapsed);
+    setStreamsListOpened(!streamsListOpened);
   };
 
   const onStationSelect = function (station, e) {
@@ -133,73 +234,75 @@ const PlayerContainer = () => {
   };
 
   return (
-    <div className="Player">
-      <div className="Player__controlsContainerMain">
-        <ControlButton
-          disabled={!activeStation.src || isLoading}
-          onClick={playPause}
-          title={isPlaying ? "Pause" : "Play"}
-          controlType={isPlaying ? controlTypes.pause : controlTypes.play}
-        />
+    <div className="Player__container">
+      <div className="Player">
+        <div className="Player__controlsContainerMain">
+          <ControlButton
+            disabled={!activeStation.src || isLoading}
+            onClick={playPause}
+            title={isPlaying ? "Pause" : "Play"}
+            controlType={isPlaying ? controlTypes.pause : controlTypes.play}
+          />
 
-        <div className="controlsContainerMain__controlsContainerInner">
-          <div>
-            {isLoading
-              ? "...Loading"
-              : isPlaying
-              ? activeStation.name
-              : "Chose radio station..."}
-          </div>
-          <div className="controlsContainerInner__nextPrevVolumeControlsContainer">
-            <div className="nextPrevVolumeControlsContainer__prevNextContainer">
-              <ControlButton
-                disabled={!activeStation.src || isLoading}
-                onClick={setPrevStation}
-                title="Previous"
-                controlType={controlTypes.prev}
-              />
-              <ControlButton
-                disabled={!activeStation.src || isLoading}
-                onClick={setNextStation}
-                title="Next"
-                controlType={controlTypes.next}
-              />
+          <div className="controlsContainerMain__controlsContainerInner">
+            <div>
+              {isLoading
+                ? "...Loading"
+                : isPlaying
+                  ? activeStation.name
+                  : "Chose radio station..."}
             </div>
-            <div className="nextPrevVolumeControlsContainer__volumeContainer">
-              <ControlButton
-                onClick={onMute}
-                title="Volume"
-                controlType={
-                  volume <= volumeCoef
-                    ? controlTypes.volumeOff
-                    : controlTypes.volumeOn
-                }
-              />
-              <VolumeBar
-                onVolumeChange={onVolumeChange}
-                volumeValue={volume}
-              ></VolumeBar>
+            <div className="controlsContainerInner__nextPrevVolumeControlsContainer">
+              <div className="nextPrevVolumeControlsContainer__prevNextContainer">
+                <ControlButton
+                  disabled={!activeStation.src || isLoading}
+                  onClick={setPrevStation}
+                  title="Previous"
+                  controlType={controlTypes.prev}
+                />
+                <ControlButton
+                  disabled={!activeStation.src || isLoading}
+                  onClick={setNextStation}
+                  title="Next"
+                  controlType={controlTypes.next}
+                />
+              </div>
+              <div className="nextPrevVolumeControlsContainer__volumeContainer">
+                <ControlButton
+                  onClick={onMute}
+                  title="Volume"
+                  controlType={
+                    volume <= volumeCoef
+                      ? controlTypes.volumeOff
+                      : controlTypes.volumeOn
+                  }
+                />
+                <VolumeBar
+                  onVolumeChange={onVolumeChange}
+                  volumeValue={volume}
+                ></VolumeBar>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <CustomButton
-        onClick={toggleStreamsList}
-        className="Player__showStreamsLink"
-        href=""
-      >
-        {streamsListCollapsed
-          ? "Hide available streams <-"
-          : "Show available streams ->"}
-      </CustomButton>
+        <CustomButton
+          onClick={toggleStreamsList}
+          className="Player__showStreamsLink"
+          href=''
+        >
+          {streamsListOpened
+            ? "Hide available streams <-"
+            : "Show available streams ->"}
+        </CustomButton>
 
-      <StreamsList
-        activeStation={activeStation}
-        selectStream={onStationSelect}
-        streams={stationsList}
-        collapsed={streamsListCollapsed}
-        className="Player_streamList"
-      />
+        <StreamsList
+          activeStation={activeStation}
+          selectStream={onStationSelect}
+          streams={stationsList}
+          collapsed={streamsListOpened}
+          className="Player_streamList"
+        />
+      </div>
     </div>
   );
 };
