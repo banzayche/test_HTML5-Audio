@@ -7,7 +7,6 @@ const VolumeBar = memo(({volumeValue, className, onVolumeChange, ...props}) => {
   const handleVolumeChange = useCallback(onVolumeChange, [onVolumeChange]);
 
   return (
-    <>
       <input
         {...props}
         className={classNames(`VolumeBar`, className)}
@@ -18,7 +17,6 @@ const VolumeBar = memo(({volumeValue, className, onVolumeChange, ...props}) => {
         value={volumeValue}
         onChange={handleVolumeChange}
       />
-    </>
   );
 });
 

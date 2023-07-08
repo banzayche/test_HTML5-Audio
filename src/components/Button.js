@@ -4,7 +4,7 @@ import './Button.scss';
 import { memo } from "react";
 
 const Button = memo((props) =>
-    typeof props.href === 'string' ?
+    typeof props.href === 'string' || props.isLink ?
     <a  {...props} className={classNames('Button', 'Button-link', props.className)}>{props.children}</a> :
     <button {...props} className={classNames('Button', props.className)}>{props.children}</button>
 );
@@ -12,7 +12,8 @@ const Button = memo((props) =>
 Button.propTypes = {
   href: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
+  isLink: PropTypes.bool
 };
 
 export default Button;

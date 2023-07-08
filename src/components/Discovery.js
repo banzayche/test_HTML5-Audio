@@ -21,11 +21,8 @@ const Discovery = ({ className }) => {
         : colorThemeSchema.dark
     );
 
-
   return (
     <div className={classNames("Discovery", className)}>
-      <h2 className={'Discovery__activeColorSchemeStatus'}>Active color theme <small><i>_{theme}_</i></small></h2>
-
       <DiscoverySection sectionName="Toggle" description={'Toggle component is a user interface element that allows users to switch between two states or options. It is commonly used to represent an on/off switch or to control the visibility of content.\n' +
         '\n' +
         'A toggle component typically consists of a visual representation, such as a sliding button or a checkbox, and it maintains an internal state to track the current state of the toggle. When the user interacts with the toggle, it triggers an event or updates a value to reflect the new state.'}
