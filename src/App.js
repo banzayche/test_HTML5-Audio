@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import classNames from "classnames";
 import Toggle from "./components/Toggle";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Button from "./components/Button"; "react-router-dom";
+import CustomButton from "./components/CustomButton";
 
 
 
@@ -27,7 +27,7 @@ const App = () => {
 
       <div className={classNames('App', {dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})}>
         <div className='theme-toggle'>
-          <Link to={pathname === '/discovery' ? '/' : '/discovery'}><Button className="__goToLink" isLink={true}>{pathname === '/discovery' ? '<---' : 'Components sets page'}</Button></Link>
+          <Link to={pathname === '/discovery' ? '/' : '/discovery'} className="__goToLink">{pathname === '/discovery' ? '<---' : 'Components sets page'}</Link>
           <label>
             <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={() => setTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark)} />
             <span className="toggle-label">Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>

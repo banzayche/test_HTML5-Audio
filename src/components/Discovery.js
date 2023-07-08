@@ -1,4 +1,4 @@
-import Button from "./Button";
+import CustomButton from "./CustomButton";
 import ControlButton, { controlTypes } from "./ControlButton";
 import VolumeBar from "./Volume";
 import { useContext, useState } from "react";
@@ -68,9 +68,9 @@ const Discovery = ({ className }) => {
           Click me
         </Button>
         `}>
-          <Button onClick={() => alert("I'm open for new roles.")}>
+          <CustomButton onClick={() => alert("I'm open for new roles.")}>
             Click me
-          </Button>
+          </CustomButton>
         </DiscoveryCard>
         <DiscoveryCard
           exampleName="Link button"
@@ -79,16 +79,16 @@ const Discovery = ({ className }) => {
           Follow me
         </Button>
         `}>
-          <Button href="https://github.com/banzayche" target="_blank">
+          <CustomButton href="https://github.com/banzayche" target="_blank">
             Follow me
-          </Button>
+          </CustomButton>
         </DiscoveryCard>
         <DiscoveryCard
           exampleName="Simple example of button"
           exampleUsageCode={`
         <Button className="Discovery-custom-button">Simple button</Button>
         `}>
-          <Button className="Discovery-custom-button">Simple button</Button>
+          <CustomButton className="Discovery-custom-button">Simple button</CustomButton>
         </DiscoveryCard>
       </DiscoverySection>
 

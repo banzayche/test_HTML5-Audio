@@ -1,4 +1,4 @@
-import Button from "./Button";
+import CustomButton from "./CustomButton";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import './StreamsList.scss';
@@ -15,7 +15,7 @@ const StreamsList = memo(({ className, collapsed, streams, selectStream, activeS
       <ul className='StreamsList__listContainer'>
         {streams.map(stream => (
           <li key={stream.id}>
-            <Button className={classNames('listContainer__streamLink', {'listContainer__streamLink--active': stream.id === activeStation.id})} onClick={onStreamClick.bind(null, stream)} href=''>{stream.name}</Button>
+            <CustomButton className={classNames('listContainer__streamLink', {'listContainer__streamLink--active': stream.id === activeStation.id})} onClick={onStreamClick.bind(null, stream)} href=''>{stream.name}</CustomButton>
           </li>
         ))}
       </ul>

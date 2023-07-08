@@ -1,7 +1,7 @@
 import "./PlayerContainer.scss";
 import ControlButton, { controlTypes } from "./ControlButton";
 import VolumeBar from "./Volume";
-import Button from "./Button";
+import CustomButton from "./CustomButton";
 import StreamsList from "./StreamsList";
 import { useEffect, useRef, useState } from "react";
 import useStore from "../store/PlayerStore";
@@ -183,7 +183,7 @@ const PlayerContainer = () => {
           </div>
         </div>
       </div>
-      <Button
+      <CustomButton
         onClick={toggleStreamsList}
         className="Player__showStreamsLink"
         href=""
@@ -191,7 +191,7 @@ const PlayerContainer = () => {
         {streamsListCollapsed
           ? "Hide available streams <-"
           : "Show available streams ->"}
-      </Button>
+      </CustomButton>
 
       <StreamsList
         activeStation={activeStation}
