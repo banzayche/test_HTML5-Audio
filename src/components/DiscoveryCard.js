@@ -6,8 +6,8 @@ import './DiscoveryCard.scss';
 const DiscoveryCard = memo(({children, sectionName, exampleUsageCode, code, exampleName, codeName, description}) => {
   return (
     <div className="DiscoveryCard">
-      {sectionName ? <h2>{sectionName}</h2> : ''}
-      {description? <p>{description}</p> : ''}
+      {sectionName ? <h2 className="DiscoveryCard__sectionName">{sectionName}</h2> : ''}
+      {description? <p className="DiscoveryCard__description">{description}</p> : ''}
       <div className="DiscoveryCard__listContainer">
           <div className="DiscoveryCard__listContainer__children">{children}</div>
           {exampleUsageCode ? <CodeSection className="DiscoveryCard__listContainer__codeExample" name={exampleName}>{exampleUsageCode}</CodeSection> : ''}

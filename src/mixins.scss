@@ -6,9 +6,11 @@
   &.dark {
     background-color: var(--dark-mode-bg);
     color: var(--dark-mode-text);
+    border-color: var(--dark-mode-text);
   }
   &.light {
     background-color: var(--ligh-mode-bg);
     color: var(--light-mode-text);
+    border-color: var(--light-mode-text);
   }
 }

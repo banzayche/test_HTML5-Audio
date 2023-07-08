@@ -6,7 +6,10 @@ import classNames from "classnames";
 const CodeSection = ({children, name, className}) => {
   return (
     <div className={classNames('CodeSection', className)}>
-      {name ? <h3>{name}</h3> : ''}
+      {name ? <h3 style={{
+        fontWeight: 200,
+        fontSize: '14px'
+      }}>{name}</h3> : ''}
       <SyntaxHighlighter language="jsx" style={darcula}  customStyle={{fontSize: '10px'}}>
         {children}
       </SyntaxHighlighter>
