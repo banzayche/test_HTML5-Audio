@@ -1,36 +1,84 @@
-import './App.scss';
-import Discovery from "./components/Discovery";
-import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import Toggle from "./components/Toggle";
-import PlayerContainer from "./components/PlayerContainer";
+import Toggle from "./components/ui-kit/Toggle";
+import styled from 'styled-components';
+import { Link, Outlet, useLocation } from "react-router-dom";
+import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
+import { themeMixin } from "./index";
 
-const isDiscovery = window.location.pathname.replace(/\//g, '') === 'discovery';
+const StyledApp = styled.div`
+  ${themeMixin};
+  height: 100%;
+  transition-property: background-color, color;
+  transition-timing-function: linear;
+  transition-duration: .5s;
+
+  &.dark {
+    background-color: var(--dark-mode-bg);
+    color: var(--dark-mode-text);
+    border-color: var(--dark-mode-text);
+  }
+  &.light {
+    background-color: var(--ligh-mode-bg);
+    color: var(--light-mode-text);
+    border-color: var(--light-mode-text);
+  }
+
+  .top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 40px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  opacity: 0.8;
+  font-size: 12px;
+  font-style: oblique;
+  display: inline-block;
+  letter-spacing: .15rem;
+  transition: var(--transition);
+  padding: 0;
+  text-underline-offset: 5px;
+  font-weight: 400;
+  color: inherit;
+
+  &:active {
+    transform: scale(.9,.9);
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 const App = () => {
-  const [theme, setTheme] = useState('dark');
-  const updateTheme = (newValue) => {
-    setTheme(newValue);
-  };
-
+  const [theme, setTheme] = useState('');
+  const {pathname} = useLocation();
   useEffect(() => {
-    const colorTheme = JSON.parse(localStorage.getItem('theme')) || 'dark';
-    updateTheme(colorTheme);
+    const colorTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(colorTheme);
   }, []);
 
-  if (isDiscovery) {
-    return <ThemeContext.Provider value={{theme, updateTheme}}><Discovery className={classNames({dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})} /></ThemeContext.Provider>;
-  }
-  return (
-    <ThemeContext.Provider value={{theme, updateTheme}}>
-      <div className={classNames('App', {dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})}>
-        <label className="theme-toggle">
-          <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={() => setTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark)} />
-          <span className="toggle-label">Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>
-        </label>
+  useEffect(() => {
+    if (theme) localStorage.setItem('theme', theme);
+  }, [theme]);
 
-        <PlayerContainer />
-      </div>
+  return (
+    <ThemeContext.Provider value={{theme, updateTheme: setTheme}}>
+
+      <StyledApp className={classNames({dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})}>
+        <div className='top-bar'>
+          <StyledLink to={pathname === '/discovery' ? '/' : '/discovery'}>{pathname === '/discovery' ? '<---' : 'Components kit page'}</StyledLink>
+          <label>
+            <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={() => setTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark)} />
+            <span>Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>
+          </label>
+        </div>
+        <Outlet></Outlet>
+      </StyledApp>
     </ThemeContext.Provider>
   );
 }

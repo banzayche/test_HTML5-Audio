@@ -1,4 +1,8 @@
-.Toggle {
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import styled from "styled-components";
+
+const StyledToggle = styled.div`
   cursor: pointer;
   display: inline-block;
   margin: 10px 20px 10px 0;
@@ -46,4 +50,19 @@
     position: absolute;
     visibility: hidden;
   }
-}
+`;
+
+const Toggle = ({checked, value, onChange, className}) =>
+  <StyledToggle className={classNames('Toggle', className)}>
+    <input className="toggle-checkbox" type="checkbox" checked={checked} value={value} onChange={onChange} />
+    <div className="toggle-switch"></div>
+  </StyledToggle>;
+
+Toggle.propTypes = {
+  checked: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  className: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+export default Toggle;

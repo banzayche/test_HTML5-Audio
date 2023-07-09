@@ -1,30 +1,56 @@
 import PropTypes from "prop-types";
-import CodeSection from "./CodeBlock";
 import { memo } from "react";
-import './DiscoveryCard.scss';
+import CodeSection from "./CodeBlock";
+import styled from "styled-components";
 
-const DiscoveryCard = memo(({children, sectionName, exampleUsageCode, code, exampleName, codeName, description}) => {
+const StyledDiscoveryCard = styled.div`
+  margin-bottom: 30px;
+
+  .listContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .children {
+      width: 300px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .codeExample {
+      width: 750px;
+
+      .dark {
+        opacity: 1;
+      }
+      .light {
+        opacity: .7;
+      }
+    }
+  }
+`;
+
+const DiscoveryCard = memo(({children, exampleUsageCode, code, exampleName, codeName, theme}) => {
   return (
-    <div className="DiscoveryCard">
-      {sectionName ? <h2 className="DiscoveryCard__sectionName">{sectionName}</h2> : ''}
-      {description? <p className="DiscoveryCard__description">{description}</p> : ''}
-      <div className="DiscoveryCard__listContainer">
-          <div className="DiscoveryCard__listContainer__children">{children}</div>
-          {exampleUsageCode ? <CodeSection className="DiscoveryCard__listContainer__codeExample" name={exampleName}>{exampleUsageCode}</CodeSection> : ''}
+    <StyledDiscoveryCard className="DiscoveryCard">
+      <div className="listContainer">
+          <div className="children">{children}</div>
+          {exampleUsageCode ? <CodeSection className={`codeExample ${theme}`} name={exampleName}>{exampleUsageCode}</CodeSection> : ''}
       </div>
       {code ? <CodeSection name={codeName}>{code}</CodeSection> : ''}
-    </div>
+    </StyledDiscoveryCard>
     );
 });
 
 DiscoveryCard.propTypes = {
   children: PropTypes.any,
-  sectionName: PropTypes.string,
   exampleUsageCode: PropTypes.string,
   code: PropTypes.string,
   exampleName: PropTypes.string,
   codeName: PropTypes.string,
-  description: PropTypes.string
+  theme: PropTypes.string
 }
 
 export default DiscoveryCard;
