@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
 import { themeMixin } from "./index";
-import './variables.css';
 
 const StyledApp = styled.div`
   ${themeMixin};
@@ -68,7 +67,7 @@ const App = () => {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{theme, setTheme}}>
+    <ThemeContext.Provider value={{theme, updateTheme: setTheme}}>
 
       <StyledApp className={classNames({dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})}>
         <div className='top-bar'>

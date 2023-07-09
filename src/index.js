@@ -1,10 +1,11 @@
 import { createRoot } from 'react-dom/client';
-import App from "./App.js";
+import { css } from "styled-components";
 import { createHashRouter, RouterProvider } from "react-router-dom";
+import App from "./App.js";
 import PlayerContainer from "./pages/PlayerContainer";
 import Discovery from "./pages/Discovery";
 import "./reset.css";
-import { css } from "styled-components";
+import './variables.css';
 
 export const themeMixin = css`
   transition-property: background-color, color;
