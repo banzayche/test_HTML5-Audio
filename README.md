@@ -5,9 +5,8 @@ HTML5 Radio Player
 
 `yarn dev`
 
-## Structure
-### Radio Player
+## Local
 http://localhost:8080
 
-### Component library
-http://localhost:8080/discovery
+## GH Pages
+http://banzayche.github.io/test_HTML5-Audio/
