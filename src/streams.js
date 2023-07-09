@@ -30,10 +30,6 @@ export const mockedStreams = [
     src: "https://streaming.radio.co/s06bd9d805/listen",
     id: uuid(),
   }, {
-    name: "MoveDaHouse",
-    src: "https://uk7.internet-radio.com/proxy/movedahouse?mp=/stream;",
-    id: uuid(),
-  }, {
     name: "Tokyo Deep and Electronic",
     src: "https://uk5.internet-radio.com/proxy/mmr?mp=/stream;",
     id: uuid(),
