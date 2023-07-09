@@ -72,7 +72,7 @@ const App = () => {
 
       <StyledApp className={classNames({dark: theme === colorThemeSchema.dark, light: theme === colorThemeSchema.light})}>
         <div className='top-bar'>
-          <StyledLink to={pathname === '/discovery' ? '/' : '/discovery'}>{pathname === '/discovery' ? '<---' : 'Components sets page'}</StyledLink>
+          <StyledLink to={pathname === '/discovery' ? '/' : '/discovery'}>{pathname === '/discovery' ? '<---' : 'Components kit page'}</StyledLink>
           <label>
             <Toggle checked={theme === colorThemeSchema.dark} value={theme} onChange={() => setTheme(theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark)} />
             <span>Switch to {theme === colorThemeSchema.dark ? colorThemeSchema.light : colorThemeSchema.dark} theme</span>
