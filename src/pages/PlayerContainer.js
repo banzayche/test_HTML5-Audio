@@ -1,4 +1,3 @@
-import "./PlayerContainer.scss";
 import ControlButton, { controlTypes } from "../components/ui-kit/ControlButton";
 import VolumeBar from "../components/ui-kit/Volume";
 import CustomButton from "../components/ui-kit/CustomButton";
@@ -6,51 +5,79 @@ import StreamsList from "../components/StreamsList";
 import { useEffect, useRef, useState } from "react";
 import useStore from "../store/PlayerStore";
 import { shallow } from "zustand/shallow";
-import { v4 as uuid } from "uuid";
+import { mockedStreams } from '../streams';
+import styled from "styled-components";
 
-const mockedStreams = [
-  {
-    name: "Galgalatz 91.8 FM",
-    src: "https://glzwizzlv.bynetcdn.com/glglz_mp3?",
-    id: uuid()
-  }, {
-    name: "Buffalo",
-    src: "http://stream-uk1.radioparadise.com/mp3-192",
-    id: uuid(),
-  }, {
-    name: "ECO99FM",
-    src: "http://eco01.livecdn.biz/ecolive/99fm_aac/icecast.audio",
-    id: uuid(),
-  }, {
-    name: "Radio z Kryjivky",
-    src: "http://stream.mjoy.ua:8000/radio-z-kryjivky",
-    id: uuid(),
-  }, {
-    name: "Amsterdam Trance",
-    src: "http://sc-atr.1.fm:7700/;stream.nsv",
-    id: uuid(),
-  }, {
-    name: "MFM Station",
-    src: "http://radio.mfm.ua:8080/online128",
-    id: uuid(),
-  }, {
-    name: "House Nation UK live",
-    src: "https://streaming.radio.co/s06bd9d805/listen",
-    id: uuid(),
-  }, {
-    name: "MoveDaHouse",
-    src: "https://uk7.internet-radio.com/proxy/movedahouse?mp=/stream;",
-    id: uuid(),
-  }, {
-    name: "Tokyo Deep and Electronic",
-    src: "https://uk5.internet-radio.com/proxy/mmr?mp=/stream;",
-    id: uuid(),
-  }, {
-    name: "Psyndora Psytrance",
-    src: "https://cast.magicstreams.gr:9111/stream/1/",
-    id: uuid(),
+const StyledPlayerContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 555px;
+
+  .Player {
+    width: 400px;
+    border: 1px solid var(--controls);
+    padding: 25px;
+    margin-top: -200px;
+
+
+    display: flex;
+    flex-direction: column;
+
+    .controlsContainerMain {
+      display: flex;
+      flex-direction: row;
+
+      .controlsContainerInner {
+        padding: 0 0 0 30px;
+        flex-grow: 2;
+
+        .nextPrevVolumeControlsContainer {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+          .prevNextContainer {
+            [title='Previous'] {
+              margin-right: 15px;
+            }
+          }
+
+          .volumeContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    .showStreamsLink {
+      opacity: 0.7;
+      font-size: 12px;
+      font-weight: 200;
+      text-align: left;
+      margin: 20px 0 0 0;
+      color: inherit;
+      font-style: oblique;
+      display: inline-block;
+      width: fit-content;
+      letter-spacing: .15rem;
+      transition: var(--transition);
+      padding: 0;
+      text-underline-offset: 5px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
-];
+`;
 
 const PlayerContainer = () => {
   const defaultVolume = 0.3;
@@ -158,9 +185,9 @@ const PlayerContainer = () => {
   };
 
   return (
-    <div className="Player__container">
+    <StyledPlayerContainer className="PlayerСontainer">
       <div className="Player">
-        <div className="Player__controlsContainerMain">
+        <div className="controlsContainerMain">
           <ControlButton
             disabled={!activeStation.src || isLoading}
             onClick={playPause}
@@ -168,7 +195,7 @@ const PlayerContainer = () => {
             controlType={isPlaying ? controlTypes.pause : controlTypes.play}
           />
 
-          <div className="controlsContainerMain__controlsContainerInner">
+          <div className="controlsContainerInner">
             <div>
               {isLoading
                 ? "...Loading"
@@ -176,8 +203,8 @@ const PlayerContainer = () => {
                   ? activeStation.name
                   : "Chose radio station..."}
             </div>
-            <div className="controlsContainerInner__nextPrevVolumeControlsContainer">
-              <div className="nextPrevVolumeControlsContainer__prevNextContainer">
+            <div className="nextPrevVolumeControlsContainer">
+              <div className="prevNextContainer">
                 <ControlButton
                   disabled={!activeStation.src || isLoading}
                   onClick={setPrevStation}
@@ -191,7 +218,7 @@ const PlayerContainer = () => {
                   controlType={controlTypes.next}
                 />
               </div>
-              <div className="nextPrevVolumeControlsContainer__volumeContainer">
+              <div className="volumeContainer">
                 <ControlButton
                   onClick={onMute}
                   title="Volume"
@@ -211,7 +238,7 @@ const PlayerContainer = () => {
         </div>
         <CustomButton
           onClick={toggleStreamsList}
-          className="Player__showStreamsLink"
+          className="showStreamsLink"
           href=''
         >
           {streamsListOpened
@@ -224,10 +251,9 @@ const PlayerContainer = () => {
           selectStream={onStationSelect}
           streams={stationsList}
           collapsed={streamsListOpened}
-          className="Player_streamList"
         />
       </div>
-    </div>
+    </StyledPlayerContainer>
   );
 };
 

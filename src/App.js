@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
 import { themeMixin } from "./index";
+import './variables.css';
 
 const StyledApp = styled.div`
   ${themeMixin};

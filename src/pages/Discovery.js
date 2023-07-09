@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 import CustomButton from "../components/ui-kit/CustomButton";
 import ControlButton, { controlTypes } from "../components/ui-kit/ControlButton";
@@ -9,7 +10,14 @@ import Toggle from "../components/ui-kit/Toggle";
 import ThemeContext, { colorThemeSchema } from "../contexts/ThemeContext";
 import DiscoveryCard from "../components/DiscoveryCard";
 import DiscoverySection from "../components/DiscoverySection";
-import "./Discovery.scss";
+import { themeMixin } from "../index";
+
+const StyledDiscovery = styled.div`
+  ${themeMixin};
+  height: 100%;
+  padding: 50px 40px 100px 40px;
+  overflow: auto;
+`;
 
 const Discovery = ({ className }) => {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -23,7 +31,7 @@ const Discovery = ({ className }) => {
     );
 
   return (
-    <div className={classNames("Discovery", className)}>
+    <StyledDiscovery className={classNames("Discovery", className)}>
       <DiscoverySection sectionName="Toggle" description={'Toggle component is a user interface element that allows users to switch between two states or options. It is commonly used to represent an on/off switch or to control the visibility of content.\n' +
         '\n' +
         'A toggle component typically consists of a visual representation, such as a sliding button or a checkbox, and it maintains an internal state to track the current state of the toggle. When the user interacts with the toggle, it triggers an event or updates a value to reflect the new state.'}
@@ -198,7 +206,7 @@ const Discovery = ({ className }) => {
           <VolumeBar volumeValue={volume} onVolumeChange={(e) => setVolume(Number(e.target.value))}></VolumeBar>
         </DiscoveryCard>
       </DiscoverySection>
-    </div>
+    </StyledDiscovery>
   );
 };
 
