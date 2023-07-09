@@ -199,9 +199,9 @@ const PlayerContainer = () => {
             <div>
               {isLoading
                 ? "...Loading"
-                : isPlaying
-                  ? activeStation.name
-                  : "Chose radio station..."}
+                : isPlaying || activeStation.src
+                    ? activeStation.name
+                    : "Chose radio station..."}
             </div>
             <div className="nextPrevVolumeControlsContainer">
               <div className="prevNextContainer">
