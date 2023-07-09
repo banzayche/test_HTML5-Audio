@@ -33,7 +33,7 @@ const StyledStreamList = styled.div`
         color: var(--controls);
       }
 
-      .active {
+      &.active {
         text-decoration: underline;
         color: var(--controls);
       }
