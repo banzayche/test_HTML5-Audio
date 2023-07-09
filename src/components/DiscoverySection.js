@@ -1,16 +1,30 @@
 import PropTypes from "prop-types";
 import { memo } from "react";
-import './DiscoverySection.scss';
+import styled from "styled-components";
+
+const StyledDiscoverySection = styled.div`
+  margin-bottom: 30px;
+
+  .sectionName {
+    text-align: center;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+  .description {
+    padding-bottom: 30px;
+  }
+`;
 
 const DiscoverySection = memo(({children, sectionName, description}) => {
   return (
-    <div className="DiscoverySection">
-      <h2 className="DiscoverySection__sectionName">{sectionName}</h2>
-      {description? <p className="DiscoverySection__description">{description}</p> : ''}
-      <div className="DiscoverySection__listContainer">
-        {children}
-      </div>
-    </div>
+    <StyledDiscoverySection className="DiscoverySection">
+      <h2 className="sectionName">{sectionName}</h2>
+      {description? <p className="description">{description}</p> : ''}
+      <div>{children}</div>
+    </StyledDiscoverySection>
   );
 });
 

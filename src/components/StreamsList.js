@@ -1,27 +1,63 @@
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { memo, useCallback } from "react";
+import styled from "styled-components";
 import CustomButton from "./ui-kit/CustomButton";
-import './StreamsList.scss';
+
+const StyledStreamList = styled.div`
+  max-height: 400px;
+  overflow: auto;
+  transition: max-height 0.5s ease-in;
+
+  &.collapsed{
+    max-height: 0;
+    transition: max-height 0.5s ease-out,
+    overflow 0.5s ease-out;
+    overflow: hidden;
+  }
+
+  .listContainer {
+    list-style: none;
+    padding-top: 5px;
+    padding-left: 0;
+    height: 100%;
+
+    .streamLink{
+      text-decoration: none;
+      text-underline-offset: 5px;
+      color: inherit;
+      padding-left: 5px;
+
+      &:hover {
+        text-decoration: underline;
+        color: var(--controls);
+      }
+
+      .active {
+        text-decoration: underline;
+        color: var(--controls);
+      }
+    }
+  }
+`;
 
 const StreamsList = memo(({ className, collapsed, streams, selectStream, activeStation }) => {
-
   const onStreamClick = useCallback(selectStream, [selectStream]);
 
   return (
-    <div  className={classNames('StreamsList', className, {'StreamsList--collapsed': !collapsed})}>
-      <ul className='StreamsList__listContainer'>
+    <StyledStreamList  className={classNames('StreamsList', className, {collapsed: !collapsed})}>
+      <ul className='listContainer'>
         {streams.map(stream => (
           <li key={stream.id}>
             <CustomButton
-              className={classNames('listContainer__streamLink', {'listContainer__streamLink--active': stream.id === activeStation.id})}
+              className={classNames('streamLink', {'active': stream.id === activeStation.id})}
               onClick={onStreamClick.bind(null, stream)} href=''>
               {stream.name}
             </CustomButton>
           </li>
         ))}
       </ul>
-    </div>
+    </StyledStreamList>
   );
 });
 

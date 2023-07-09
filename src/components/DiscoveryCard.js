@@ -1,17 +1,46 @@
 import PropTypes from "prop-types";
 import { memo } from "react";
 import CodeSection from "./CodeBlock";
-import './DiscoveryCard.scss';
+import styled from "styled-components";
+
+const StyledDiscoveryCard = styled.div`
+  margin-bottom: 30px;
+
+  .listContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .children {
+      width: 300px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .codeExample {
+      width: 750px;
+
+      .dark {
+        opacity: 1;
+      }
+      .light {
+        opacity: .7;
+      }
+    }
+  }
+`;
 
 const DiscoveryCard = memo(({children, exampleUsageCode, code, exampleName, codeName, theme}) => {
   return (
-    <div className="DiscoveryCard">
-      <div className="DiscoveryCard__listContainer">
-          <div className="DiscoveryCard__listContainer__children">{children}</div>
-          {exampleUsageCode ? <CodeSection className={`DiscoveryCard__listContainer__codeExample DiscoveryCard__listContainer__codeExample--${theme}`} name={exampleName}>{exampleUsageCode}</CodeSection> : ''}
+    <StyledDiscoveryCard className="DiscoveryCard">
+      <div className="listContainer">
+          <div className="children">{children}</div>
+          {exampleUsageCode ? <CodeSection className={`codeExample ${theme}`} name={exampleName}>{exampleUsageCode}</CodeSection> : ''}
       </div>
       {code ? <CodeSection name={codeName}>{code}</CodeSection> : ''}
-    </div>
+    </StyledDiscoveryCard>
     );
 });
 
