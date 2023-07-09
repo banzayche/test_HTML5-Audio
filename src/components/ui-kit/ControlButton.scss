@@ -1,4 +1,4 @@
-@import "../variables.css";
+@import "../../variables.css";
 
 @mixin play-pause-buttons {
   width: 50px;
@@ -45,7 +45,7 @@
 
   &.play{
     @include play-pause-buttons;
-    background-image: url('../legacy/img/play.png');
+    background-image: url('../../legacy/img/play.png');
 
     &:hover:not([disabled]) {
       border-radius:50%;
@@ -55,26 +55,26 @@
 
   &.pause{
     @include play-pause-buttons;
-    background-image: url("../legacy/img/pause.png");
+    background-image: url("../../legacy/img/pause.png");
     border-radius:50%;
   }
 
 
   &.next{
     @include prev-next;
-    background-image: url("../legacy/img/next.png");
+    background-image: url("../../legacy/img/next.png");
   }
   &.prev{
     @include prev-next;
-    background-image: url("../legacy/img/prev.png");
+    background-image: url("../../legacy/img/prev.png");
   }
 
   &.volumeOn{
     @include volume;
-    background-image: url('../legacy/img/volume_b.png');
+    background-image: url('../../legacy/img/volume_b.png');
   }
   &.volumeOff{
     @include volume;
-    background-image: url('../legacy/img/volume_bn.png');
+    background-image: url('../../legacy/img/volume_bn.png');
   }
 }

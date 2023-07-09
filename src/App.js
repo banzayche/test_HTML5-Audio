@@ -2,26 +2,22 @@ import './App.scss';
 import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import Toggle from "./components/Toggle";
+import Toggle from "./components/ui-kit/Toggle";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import CustomButton from "./components/CustomButton";
-
-
-
 
 
 const App = () => {
   const [theme, setTheme] = useState('dark');
   const {pathname} = useLocation();
-  const updateTheme = (newValue) => {
-    setTheme(newValue);
-  };
-
-
   useEffect(() => {
     const colorTheme = JSON.parse(localStorage.getItem('theme')) || 'dark';
     updateTheme(colorTheme);
   }, []);
+
+  const updateTheme = (newValue) => {
+    setTheme(newValue);
+  };
+
   return (
     <ThemeContext.Provider value={{theme, updateTheme}}>
 

@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import App from "./App.js";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import PlayerContainer from "./components/PlayerContainer";
-import Discovery from "./components/Discovery";
-<App/>
+import PlayerContainer from "./pages/PlayerContainer";
+import Discovery from "./pages/Discovery";
+
 const router = createHashRouter([
   {
     path: "/",

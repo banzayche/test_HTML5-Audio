@@ -1,14 +1,15 @@
-import CustomButton from "./CustomButton";
-import ControlButton, { controlTypes } from "./ControlButton";
-import VolumeBar from "./Volume";
 import { useContext, useState } from "react";
-import ThemeContext, { colorThemeSchema } from "../contexts/ThemeContext";
-import "./Discovery.scss";
-import Toggle from "./Toggle";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import DiscoveryCard from "./DiscoveryCard";
-import DiscoverySection from "./DiscoverySection";
+
+import CustomButton from "../components/ui-kit/CustomButton";
+import ControlButton, { controlTypes } from "../components/ui-kit/ControlButton";
+import VolumeBar from "../components/ui-kit/Volume";
+import Toggle from "../components/ui-kit/Toggle";
+import ThemeContext, { colorThemeSchema } from "../contexts/ThemeContext";
+import DiscoveryCard from "../components/DiscoveryCard";
+import DiscoverySection from "../components/DiscoverySection";
+import "./Discovery.scss";
 
 const Discovery = ({ className }) => {
   const { theme, updateTheme } = useContext(ThemeContext);

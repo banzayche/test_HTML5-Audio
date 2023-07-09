@@ -1,8 +1,8 @@
 import "./PlayerContainer.scss";
-import ControlButton, { controlTypes } from "./ControlButton";
-import VolumeBar from "./Volume";
-import CustomButton from "./CustomButton";
-import StreamsList from "./StreamsList";
+import ControlButton, { controlTypes } from "../components/ui-kit/ControlButton";
+import VolumeBar from "../components/ui-kit/Volume";
+import CustomButton from "../components/ui-kit/CustomButton";
+import StreamsList from "../components/StreamsList";
 import { useEffect, useRef, useState } from "react";
 import useStore from "../store/PlayerStore";
 import { shallow } from "zustand/shallow";
@@ -61,6 +61,7 @@ const PlayerContainer = () => {
   const [volumeSnapshot, setVolumeSnapshot] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const audio = useRef(null);
 
   const [activeStation, setActiveStation, setStations, stationsList] = useStore(
     (state) => [
@@ -71,8 +72,6 @@ const PlayerContainer = () => {
     ],
     shallow
   );
-
-  const audio = useRef(null);
 
   useEffect(() => {
     setStations(mockedStreams);

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import CodeSection from "./CodeBlock";
 import { memo } from "react";
+import CodeSection from "./CodeBlock";
 import './DiscoveryCard.scss';
 
 const DiscoveryCard = memo(({children, exampleUsageCode, code, exampleName, codeName, theme}) => {

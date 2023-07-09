@@ -1,7 +1,7 @@
+import { memo } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import './Button.scss';
-import { memo } from "react";
+import './CustomButton.scss';
 
 const CustomButton = memo((props) =>
     typeof props.href === 'string' ?

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import './Toggle.scss';
 import classNames from "classnames";
+import './Toggle.scss';
 
 const Toggle = ({checked, value, onChange, className}) =>
   <div className={classNames('Toggle', className)}>
