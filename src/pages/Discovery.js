@@ -87,11 +87,11 @@ const Discovery = ({ className }) => {
           theme={theme}
           exampleName="Link button"
           exampleUsageCode={`
-        <Button href="https://github.com/banzayche" target="_blank">
+        <Button href="https://github.com/banzayche/test_HTML5-Audio" target="_blank">
           Follow me
         </Button>
         `}>
-          <CustomButton href="https://github.com/banzayche" target="_blank">
+          <CustomButton href="https://github.com/banzayche/test_HTML5-Audio" target="_blank">
             Follow me
           </CustomButton>
         </DiscoveryCard>
