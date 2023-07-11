@@ -1,7 +1,7 @@
 :root {
     --dark-mode-bg: rgba(4,4,4,.8);
     --dark-mode-text: rgb(192,192,192);
-    --ligh-mode-bg: rgba(192,192,192,.8);
+    --ligh-mode-bg: rgb(255, 255, 255);
     --light-mode-text: rgb(0, 0, 0);
     --controls: #F97534;
 

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import ThemeContext, { colorThemeSchema } from "./contexts/ThemeContext";
 import { themeMixin } from "./index";
+import { linkStyleMixin } from "./components/ui-kit/CustomButton";
 
 const StyledApp = styled.div`
   ${themeMixin};
@@ -34,24 +35,7 @@ const StyledApp = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  opacity: 0.8;
-  font-size: 12px;
-  font-style: oblique;
-  display: inline-block;
-  letter-spacing: .15rem;
-  transition: var(--transition);
-  padding: 0;
-  text-underline-offset: 5px;
-  font-weight: 400;
-  color: inherit;
-
-  &:active {
-    transform: scale(.9,.9);
-  }
-
-  &:hover {
-    opacity: 1;
-  }
+  ${linkStyleMixin}';
 `;
 
 const App = () => {

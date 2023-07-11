@@ -58,23 +58,7 @@ const StyledPlayerContainer = styled.div`
     }
 
     .showStreamsLink {
-      opacity: 0.7;
-      font-size: 12px;
-      font-weight: 200;
-      text-align: left;
       margin: 20px 0 0 0;
-      color: inherit;
-      font-style: oblique;
-      display: inline-block;
-      width: fit-content;
-      letter-spacing: .15rem;
-      transition: var(--transition);
-      padding: 0;
-      text-underline-offset: 5px;
-
-      &:hover {
-        opacity: 1;
-      }
     }
   }
 `;

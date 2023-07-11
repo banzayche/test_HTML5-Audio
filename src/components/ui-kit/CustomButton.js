@@ -20,13 +20,33 @@ const mixin = css`
   }
 `;
 
+export const linkStyleMixin = css`
+  ${mixin};
+  opacity: 0.7;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+  color: inherit;
+  font-style: oblique;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: .15rem;
+  transition: var(--transition);
+  padding: 0;
+  text-underline-offset: 5px;
+  border: none;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 const StyledButton = styled.button`
   ${mixin};
 `;
 
 const StyledLink = styled.a`
-  ${mixin};
-  border: none;
+  ${linkStyleMixin}
 `;
 
 const CustomButton = memo((props) =>

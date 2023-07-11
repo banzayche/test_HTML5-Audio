@@ -24,6 +24,7 @@ const StyledStreamList = styled.div`
 
     .streamLink{
       text-decoration: none;
+      font-style: normal;
       text-underline-offset: 5px;
       color: inherit;
       padding-left: 5px;
